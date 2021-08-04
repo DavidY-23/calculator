@@ -1,116 +1,109 @@
-/*
-function operate(num1, num2, operator)
-{
-    const calculated;
-    return calculated
-}
-*/
-
+//a is the first value, b is the sign, c is the 2nd number 
 let a = "";
 let b = "";
 let c = "";
 
+function keyCode(event) {
+    if(['0', '1', '2', '3', '4', '5','6','7','8','9', '+', '-', '/', '*', 'Enter', 'c'].includes(event.key)) {
+        display(event.key)
+    }
+} 
 function display(time) {
-    console.log(time);
-    if (time === "c")
-    {
+    if (time === "c") {
         a = "";
         b = "";
         c = "";
         document.getElementById("display").innerHTML = "";
-
     }
-    else if (time === "-")
-    {
+    else if (time === "-") {
+        if (c != "") {
+            calculating(a, b, c);
+        }
         b = a;
         a = "";
         c = "-";
         document.getElementById("display").innerHTML += time;
-
     }
 
-    else if (time === "+")
-    {
+    else if (time === "+") {
+        if (c != "") {
+            calculating(a, b, c);
+        }
         b = a;
         a = "";
         c = "+";
         document.getElementById("display").innerHTML += time;
-
     }
 
-    else if (time === "x")
-    {
+    else if (time === "x") {
+        if (c != "") {
+            calculating(a, b, c);
+        }
         b = a;
         a = "";
         c = "x";
         document.getElementById("display").innerHTML += time;
-
-
     }
-    else if (time === "/")
-    {
+    else if (time === "/") {
+        if (c != "") {
+            calculating(a, b, c);
+        }
         b = a;
         a = "";
         c = "/";
         document.getElementById("display").innerHTML += time;
     }
-    else if (time === "=")
-    {
-        if (c === "+")
-        {
-            let calculated = parseFloat(a) + parseFloat(b);
+    else if (time === "=" || time === "Enter") {
+        calculating(a, b, c);
+        return;
+    }
+    else {
+        a += String(time);
+        document.getElementById("display").innerHTML += time;
+    }
+  }
+
+  function calculating(firstNum, secondNum, operator)
+  {
+        if (operator === "+") {
+            let calculated = parseFloat(firstNum) + parseFloat(secondNum);
             document.getElementById("display").innerHTML = calculated;
             a = calculated;
             c = "";
-
             return;
     
         }
-        else if (c === "-")
-        {
-            let calculated = parseFloat(b) - parseFloat(a);
+        else if (operator === "-") {
+            let calculated = parseFloat(secondNum) - parseFloat(firstNum);
             document.getElementById("display").innerHTML = calculated;
-            a = -calculated;
+            a = calculated;
             console.log(calculated);
             c = "";
 
             return;
     
         }
-        else if (c === "x")
-        {
-            let calculated = parseFloat(a) * parseFloat(b);
+        else if (operator === "x") {
+            let calculated = parseFloat(firstNum) * parseFloat(secondNum);
             document.getElementById("display").innerHTML = calculated;
             a = calculated;
             c = "";
             return;
     
         }
-        else if (c === "/")
-        {
-            if ((a) == 0)
+        else if (operator === "/") {
+            if ((firstNum) == 0)
             {
                 document.getElementById("display").innerHTML = "You cannot divide by 0."
                 return;
             }
-            let calculated = parseFloat(b) / parseFloat(a);
+            let calculated = parseFloat(secondNum) / parseFloat(firstNum);
             document.getElementById("display").innerHTML = calculated;
             a = calculated;
             c = "";
             return;
-    
         }
-        else
-        {
+        else {
             return;
         }
     }
-    else
-    {
-        a += String(time);
-        document.getElementById("display").innerHTML += time;
-    
-    }
-    
-    
-  }

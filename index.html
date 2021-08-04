@@ -1,19 +1,19 @@
+<!DOCTYPE html>
 <html>
-
     <title>Calculator</title>
     <head>
         <link rel="stylesheet" href="style.css">
         <script src="main.js"></script>
     </head>
-    <body>
+    <body onkeydown="keyCode(event)">>
         <h1>Calculator</h1>
         <div class = "calculator">
             <div class='display' id="display"></div>
-            <div class ="buttons" >
-                <button type="button" class ="7"  onclick="display(7)">7</button>
-                <button type="button" class ="8"  onclick="display(8)">8</button>
+            <div class ="buttons">
+                <button type="button" class ="7" onclick="display(7)">7</button>
+                <button type="button" class ="8" onclick="display(8)">8</button>
                 <button type="button" class ="9"  onclick="display(9)">9</button>
-                <button type="button" class ="divide" onclick="display('/')">/</button>
+                <button type="button" class = "divide" onclick="display('/')">/</button>
                 <button type="button" class ="4" onclick="display(4)">4</button>
                 <button type="button" class ="5" onclick="display(5)">5</button>
                 <button type="button" class ="6" onclick="display(6)">6</button>
@@ -27,8 +27,6 @@
                 <button type="button" class ="equal" onclick="display('=')">=</button>
                 <button type="button" class ="add" onclick="display('+')">+</button>
             </div>
-
-
         </div>
     </body>
 </html>
